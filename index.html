@@ -1,7 +1,6 @@
 <!doctype html>
-<!-- data-badge="text" shows a plain download button. Once Apple's official badge files are
-     self-hosted at assets/badges/app-store-black.svg and app-store-white.svg, set data-badge="official". -->
-<html lang="en" class="no-js" data-badge="text">
+<!-- data-badge="official": Apple’s badge, self-hosted in assets/badges/. Set it to "text" for a plain button. -->
+<html lang="en" class="no-js" data-badge="official">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -13,6 +12,11 @@
 <meta name="referrer" content="no-referrer">
 <link rel="icon" type="image/png" href="assets/app-icon-64.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TidyAway">
 <link rel="stylesheet" href="css/site.css">
 <script>document.documentElement.className = 'js';</script>
 </head>
@@ -29,6 +33,13 @@
     <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 6v12M15.5 6v12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5v8a1.5 1.5 0 0 1-1.5 1.5H14v-5.5h-4V20.5H5.5A1.5 1.5 0 0 1 4 19z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 2.8v5.4c0 4.4-3 8-7.5 9.8-4.5-1.8-7.5-5.4-7.5-9.8V5.8z"/><path d="M8.6 12l2.4 2.4 4.4-4.6"/></g></symbol>
+    <symbol id="i-ask" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 3.5V17A2.5 2.5 0 0 1 4 14.5z"/><path d="M9.9 8.9a2.2 2.2 0 1 1 3.2 2c-.7.4-1.1.8-1.1 1.6M12 14.6v.01"/></g></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="5.5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="18.5" cy="12" r="1.9"/></g></symbol>
+    <symbol id="i-get" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/></g></symbol>
     <symbol id="i-drive" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="8" width="12" height="13" rx="2.5"/><path d="M9 8V3.5h6V8M11 5.5v.01M13 5.5v.01"/></g></symbol>
     <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7.5A2 2 0 0 1 5.5 5.5h3.7l2 2.3h7.3a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
     <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7.5 18.5a4 4 0 0 1-.6-7.96 5.5 5.5 0 0 1 10.6 1.16A3.5 3.5 0 0 1 17 18.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
@@ -45,6 +56,7 @@
     <a class="brand" href="#top" aria-label="TidyAway, home">
       <img src="assets/app-icon-64.png" width="30" height="30" alt="">
       <span class="brand__word">Tidy<span>Away</span></span>
+      <span class="brand__sub">Free Up Storage</span>
     </a>
     <button class="nav__toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="navLinks"><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg>Menu</button>
     <nav class="nav__links" id="navLinks" aria-label="Sections">
@@ -53,7 +65,7 @@
       <a href="#ask">Questions</a>
       <a href="#private">Privacy</a>
     </nav>
-    <a class="btn btn--ink btn--sm" href="https://apps.apple.com/app/id6836546403" rel="noopener">Get the app</a>
+    <a class="btn btn--ink btn--sm nav__get" href="https://apps.apple.com/app/id6836546403" rel="noopener" aria-label="Get the app on the App Store"><span class="nav__get-long">Get the app</span><span class="nav__get-short" aria-hidden="true">Get</span></a>
   </div>
   <div class="meter" aria-hidden="true"><i id="meter"></i></div>
 </header>
@@ -180,37 +192,18 @@
   </div>
 </section>
 
-<!-- 2. MOMENTS -->
-<section class="sec moments" id="moments" aria-labelledby="h-moments">
-  <div class="wrap">
-    <div class="sec__head sec__head--split">
-      <div>
-        <p class="kicker"><span>01</span>The moment</p>
-        <h2 class="h2" id="h-moments">Storage full, right when it matters most.</h2>
-      </div>
-      <div class="rail-ctl">
-        <span class="rail-ctl__n" id="viewN" aria-hidden="true">1 / 6</span>
-        <button class="round" type="button" id="viewPrev" aria-label="Previous moment"><svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        <button class="round" type="button" id="viewNext" aria-label="Next moment"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-      </div>
-    </div>
-
-    <div class="viewer" id="viewer" tabindex="0" role="group" aria-roledescription="carousel" aria-label="Six moments when a full phone gets in the way. Use the arrow keys to move between them.">
-      <div class="viewer__slides" id="viewSlides"></div>
-      <div class="note" id="viewNote" aria-hidden="true">
-        <span class="note__ic"><i></i></span>
-        <span><b>Storage Almost Full</b><small>No room for new photos.</small></span>
-        <em>Illustration</em>
-      </div>
-      <div class="viewer__cap" aria-live="polite">
-        <span class="viewer__k" id="viewK"></span>
-        <strong id="viewLine"></strong>
-      </div>
-    </div>
-    <div class="thumbs" id="viewThumbs" role="group" aria-label="Choose a moment"></div>
-    <noscript><p class="fine">Six photographs of moments a full phone gets in the way: fireworks, first steps, a concert, a surprise warning, a sunset and a city trip.</p></noscript>
-
-    <p class="aside">The warning never comes on a quiet afternoon. TidyAway is for the afternoon before.</p>
+<!-- 2. THE MOMENT: one photograph, full bleed -->
+<section class="moment" id="moments" aria-labelledby="h-moments">
+  <div class="moment__img" data-moment="0" data-pos="50% 62%" data-alt="A crowd holding up phones under a sky full of golden fireworks."></div>
+  <div class="note" id="momentNote" aria-hidden="true">
+    <span class="note__ic"><i></i></span>
+    <span><b>Storage Almost Full</b><small>No room for new photos.</small></span>
+    <em>Illustration</em>
+  </div>
+  <div class="wrap moment__in">
+    <p class="kicker"><span>01</span>The moment</p>
+    <h2 class="h2" id="h-moments">Storage full, right when it matters most.</h2>
+    <p class="moment__line">Happening now. And your phone is full.</p>
   </div>
 </section>
 
@@ -231,7 +224,8 @@
           <div class="bar bar--lg bar--full"><i></i></div>
         </div>
         <div class="roll" id="roll" aria-hidden="true"></div>
-        <div class="bin" id="bin" hidden>
+        <p class="roll__empty" id="rollEmpty" aria-hidden="true" hidden><b>No Photos</b><span>Deleted, but not gone yet.</span></p>
+        <div class="bin is-off" id="bin" aria-hidden="true">
           <span class="bin__name">Recently Deleted</span>
           <span class="bin__meta"><b id="binN">0</b> photos, kept up to 30 days, still using space</span>
         </div>
@@ -244,6 +238,19 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- The turn: the moment you would miss -->
+<section class="turn" aria-labelledby="h-turn">
+  <div class="wrap">
+    <figure class="turn__card">
+      <div class="turn__img" data-moment="1" data-pos="50% 36%" data-alt="A baby in overalls taking first steps in front of a couch, holding a parent’s hands."></div>
+      <figcaption class="turn__cap">
+        <h2 class="turn__h" id="h-turn">First steps. No space left to film them.</h2>
+        <p class="turn__p">The warning never comes on a quiet afternoon. TidyAway is for the afternoon before.</p>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
@@ -416,6 +423,18 @@
   </div>
 </section>
 
+<!-- More: grouped list, shown on phones -->
+<section class="more" id="more" aria-labelledby="h-more">
+  <div class="wrap">
+    <h2 class="more__h" id="h-more">More</h2>
+    <ul class="glist">
+      <li><a class="grow" href="privacy.html" data-sheet="privacy"><span class="grow__ic"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg></span><span class="grow__t">Privacy policy</span><svg class="ico grow__chev" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a class="grow" href="support.html" data-sheet="support"><span class="grow__ic"><svg class="ico" aria-hidden="true"><use href="#i-ask"/></svg></span><span class="grow__t">Support</span><svg class="ico grow__chev" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a class="grow" href="https://apps.apple.com/app/id6836546403" rel="noopener"><span class="grow__ic"><svg class="ico" aria-hidden="true"><use href="#i-get"/></svg></span><span class="grow__t">TidyAway on the App Store</span><svg class="ico grow__chev" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+    </ul>
+  </div>
+</section>
+
 <!-- 10. FINAL CALL TO ACTION -->
 <section class="final" aria-labelledby="h-final">
   <div class="wrap">
@@ -453,6 +472,87 @@
     <p class="foot__legal">Apple, iPhone, iPad and App Store are trademarks of Apple Inc. Google Drive, OneDrive and Dropbox are trademarks of their respective owners.</p>
   </div>
 </footer>
+
+
+<!-- Phone app chrome: tab bar and bottom sheets (hidden above 820px) -->
+<nav class="tabbar" id="tabbar" aria-label="App sections">
+  <a class="tab" href="#top" data-tab="top" aria-current="location"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg><span>Home</span></a>
+  <a class="tab" href="#proof" data-tab="proof"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg><span>The proof</span></a>
+  <a class="tab" href="#ask" data-tab="ask"><svg class="ico" aria-hidden="true"><use href="#i-ask"/></svg><span>Questions</span></a>
+  <a class="tab" href="#private" data-tab="private"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><span>Privacy</span></a>
+  <a class="tab" href="#more" data-tab="more"><svg class="ico" aria-hidden="true"><use href="#i-more"/></svg><span>More</span></a>
+</nav>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet__scrim" data-sheet-close></div>
+  <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1">
+    <div class="sheet__top" id="sheetGrab">
+      <span class="sheet__handle" aria-hidden="true"></span>
+      <p class="sheet__title" id="sheetTitle"></p>
+      <button class="sheet__close" type="button" data-sheet-close aria-label="Close"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet__body doc" id="sheetBody"></div>
+  </div>
+</div>
+<!-- sheet:templates:start -->
+<template id="tpl-privacy">
+<h1>TidyAway privacy policy</h1>
+<p>TidyAway helps you free up space on your iPhone. It works on your iPhone. It has no account system, no analytics, and no advertising, and it never sends your photos, your library information, or your activity to the developer.</p>
+<h2>Photos access</h2>
+<p>TidyAway reads the photos and videos you allow it to through Apple Photos. You can give full or limited access, and change it at any time in Settings.</p>
+<p>A scan builds an inventory on your iPhone. It can include Apple Photos identifiers, file names, dates, favorite status, media types, resource sizes and fingerprints (hashes), the names of your albums, and an approximate location rounded to about 1 km. The inventory and an activity log are kept in the app's local storage and are removed when you delete the app. The app does not keep separate copies of your photos.</p>
+<p>To suggest groups, TidyAway can look at small versions of your photos with the image recognition built into iOS. This happens on your iPhone. The app keeps short labels (such as "beach" or "receipt"), sharpness and brightness numbers, and which photos look alike. It never keeps a picture and does not identify people.</p>
+<p>When you choose a place on the Archive tab, the map comes from Apple Maps. Your photo locations stay on your iPhone.</p>
+<h2>Deleting</h2>
+<p>TidyAway deletes nothing on its own. When you select items, sign off, and approve, the app asks Apple Photos to delete exactly those items, and Apple shows its own confirmation. Apple normally keeps deleted items in Recently Deleted for up to 30 days. If iCloud Photos is on, the deletion also applies to iCloud Photos and your other devices. Favorites are never deleted, and one copy of every duplicate is always kept. The approval, item count, and outcome are recorded in the local activity log, without file names.</p>
+<p>If you approve removing a downloaded iCloud Drive file, the app asks iCloud Drive to remove the downloaded copy from your iPhone. The file stays in iCloud Drive.</p>
+<h2>Archiving</h2>
+<p>When you approve an archive, the app copies the items you selected to the place you chose: a drive plugged into your iPhone, a folder in Files (such as iCloud Drive or a file server), or a connected Google Drive, OneDrive, or Dropbox account. If an original is stored only in iCloud Photos, the app downloads it from Apple first. Each copy is checked against its original. The app only adds copies there; it never changes or deletes anything in your archive.</p>
+<p>If you connect Google Drive, OneDrive, or Dropbox, that service signs you in on its own page and gives TidyAway access only to the files it creates (Google Drive) or to its own app folder (Dropbox), where TidyAway can't see your other files. OneDrive grants access to your files so that copies can be saved in a normal, visible folder; TidyAway only adds copies to a TidyAway folder in My files and never opens, changes or deletes anything else. To show which account is connected, the app keeps the account's email address or name on your iPhone; it isn't sent anywhere else. Copies go straight to that service; occasionally an item is briefly prepared in temporary storage on your iPhone and removed after upload. The sign-in is kept in your iPhone's Keychain. Disconnecting removes it from your iPhone; your archived copies stay with the service. That service's own privacy policy covers what it stores.</p>
+<p>After a verified copy, the app keeps a local list of each copy's file name, location, size, fingerprint, and date, and the identifier of the photo it came from, so you can find a copy and put it back. Deleting originals after archiving is offered only when the app can confirm the copy is safe at its destination. The list stays on your iPhone and is removed when you delete the app.</p>
+<h2>Purchases</h2>
+<p>TidyAway Pro is sold through Apple. Apple handles payment; the app only learns whether Pro is active.</p>
+<h2>Questions</h2>
+<p>For privacy questions, use the <a href="https://github.com/bienyam/SmartPhotoVault/issues">TidyAway support page</a>. Issues are public, so leave out personal photos and library information.</p>
+<p>Last updated: November 23, 2026.</p>
+</template>
+<template id="tpl-support">
+<h1>Support</h1>
+<p>Short answers to the questions we hear most. If yours is not here, ask us.</p>
+<dl>
+<dt>Why is my phone still full after I delete photos?</dt>
+<dd>Deleted photos move to Recently Deleted. They stay there for up to 30 days and keep using space, which is why a phone can still be full after you delete things.</dd>
+<dt>Will it delete my favorites?</dt>
+<dd>Favorites are never deleted. TidyAway leaves them where they are.</dd>
+<dt>What about duplicates?</dt>
+<dd>One copy of every duplicate is always kept.</dd>
+<dt>How is a copy checked?</dt>
+<dd>Every copy is read back and its SHA-256 fingerprint is compared with the original, byte for byte. Copying to OneDrive, the app shows four checks: Copied, byte for byte. Where they are. One brought back and checked. Your OK.</dd>
+<dt>What gets deleted?</dt>
+<dd>TidyAway deletes only what you approve, and then Apple asks you to confirm too. Every copy is checked byte for byte before that.</dd>
+<dt>Can I get a copy back?</dt>
+<dd>Anything TidyAway copied can be brought back.</dd>
+<dt>Where do copies go?</dt>
+<dd>You choose where copies go: a drive plugged into your iPhone or iPad, a folder in Files (iCloud Drive or a home server), Google Drive, OneDrive or Dropbox.</dd>
+<dt>Do you see my photos?</dt>
+<dd>No account, no ads and no analytics. Your photos never go to the developer, and scanning happens on the device.</dd>
+<dt>Does it run on iPad?</dt>
+<dd>Yes, TidyAway runs on iPhone and iPad.</dd>
+<dt>What does it cost?</dt>
+<dd>TidyAway is free to download. TidyAway Pro is an in-app purchase. The App Store shows the current prices.</dd>
+<dt>What is coming soon?</dt>
+<dd>Archiving for Live Photos and edited photos, Check-ins (storage reminders on a schedule, and reminders before events in your calendar) and Smart Pro (the best shot with the reason it was chosen, and screenshots read on the device). None of these are in version 1.0.</dd>
+</dl>
+<h2>Report a problem or ask a question</h2>
+<div class="card">
+<p>Problems and questions go to the TidyAway issues page on GitHub.</p>
+<p>Issues are public, so leave out personal photos and library information.</p>
+<a class="btn btn--ink" href="https://github.com/bienyam/SmartPhotoVault/issues" rel="noopener">Report a problem or ask a question</a>
+</div>
+<h2>Privacy</h2>
+<p>The <a href="privacy.html">privacy policy</a> says what the app reads, keeps and deletes.</p>
+</template>
+<!-- sheet:templates:end -->
 
 <script src="js/moments.js"></script>
 <script src="js/site.js"></script>

@@ -49,13 +49,13 @@
     an.onfinish = an.oncancel = function () { f.remove(); flights.splice(flights.indexOf(an), 1); if (done) done(); };
   }
 
-  /* ---------- official App Store badge, once the files are self-hosted ---------- */
+  /* ---------- official App Store badge (Apple's black badge, unaltered, in both modes) ---------- */
   (function badge() {
     if (document.documentElement.getAttribute('data-badge') !== 'official') return;
     $$('.store').forEach(function (a) {
       a.className = 'store store--badge';
-      a.innerHTML = '<img class="store__black" src="assets/badges/app-store-black.svg" alt="Download on the App Store" height="52">' +
-        '<img class="store__white" src="assets/badges/app-store-white.svg" alt="" aria-hidden="true" height="52">';
+      a.setAttribute('aria-label', 'Download on the App Store');
+      a.innerHTML = '<img class="store__black" src="assets/badges/app-store-black.svg" alt="" width="156" height="52">';
     });
   })();
 
@@ -72,7 +72,7 @@
   /* ---------- staggered reveals ---------- */
   (function reveals() {
     var groups = ['.hero__copy > *', '.hero__side > *', '.stage__grid > .panel', '.stage__cap', '.three li',
-      '.sec__head > *', '.sec__head--split > div > *', '.viewer', '.thumbs', '.aside', '.split__copy > *', '.split__demo > *',
+      '.sec__head > *', '.moment__in > *', '.turn__card', '.more .wrap > *', '.split__copy > *', '.split__demo > *',
       '.proof', '.duo > *', '.rules li', '.askbox', '.quad li', '.band__note', '.soon li', '.poster'];
     var els = [];
     groups.forEach(function (g) {
@@ -123,7 +123,7 @@
     });
     area.addEventListener('pointerleave', function () { area.style.setProperty('--mx', 0); area.style.setProperty('--my', 0); });
   }
-  parallax($('.stage__grid')); parallax($('#viewer')); parallax($('#poster'));
+  parallax($('.stage__grid')); parallax($('#poster'));
 
   /* final poster photograph (path comes from moments.js, like every other photo) */
   (function poster() {
@@ -246,68 +246,25 @@
     io.observe(target);
   })();
 
-  /* ---------- moments viewer ---------- */
-  (function viewer() {
-    var v = $('#viewer'), slidesEl = $('#viewSlides'), thumbsEl = $('#viewThumbs'); if (!v || !M.items.length) return;
-    var note = $('#viewNote'), cap = $('.viewer__cap', v), k = $('#viewK'), lineEl = $('#viewLine'), nEl = $('#viewN');
-    var n = M.items.length, cur = -1;
-    var imgs = [];
-    var slides = M.items.map(function (m, i) {
-      var d = document.createElement('div'); d.className = 'viewer__slide' + (m.deep ? ' is-deep' : '');
-      var pan = document.createElement('div'); pan.className = 'viewer__pan';
-      var img = new Image();
-      img.alt = m.alt; img.decoding = 'async'; img.draggable = false;
-      img.sizes = '(min-width: 1312px) 1272px, 100vw';
-      img.style.setProperty('--pos', m.pos); img.style.setProperty('--pos-tall', m.posTall);
-      pan.appendChild(img); d.appendChild(pan); slidesEl.appendChild(d); imgs.push(img);
-      return d;
+  /* ---------- story photographs (paths come from moments.js) ---------- */
+  (function photos() {
+    $$('[data-moment]').forEach(function (holder, i) {
+      var m = M.items[+holder.getAttribute('data-moment')]; if (!m) return;
+      var img = new Image(); img.alt = holder.getAttribute('data-alt') || m.alt; img.decoding = 'async'; img.loading = 'lazy';
+      img.sizes = '100vw'; img.srcset = srcset(m); img.src = src(m, 1600);
+      img.style.setProperty('--pos', holder.getAttribute('data-pos') || m.pos);
+      holder.appendChild(img);
     });
-    function load(i) {                                           // only the current slide and its neighbors
-      var img = imgs[(i + n) % n], m = M.items[(i + n) % n];
-      if (img.getAttribute('src')) return;
-      img.srcset = srcset(m); img.src = src(m, 1600);
-    }
-    var thumbs = M.items.map(function (m, i) {
-      var b = document.createElement('button'); b.type = 'button'; b.className = 'tthumb';
-      b.setAttribute('aria-label', 'Show moment ' + (i + 1) + ': ' + m.name);
-      var s = document.createElement('span'); bg(s, m); b.appendChild(s); b.appendChild(document.createTextNode(m.name));
-      b.addEventListener('click', function () { go(i); });
-      thumbsEl.appendChild(b);
-      return b;
-    });
-    function go(i) {
-      i = (i + n) % n; if (i === cur) return; cur = i;
-      load(i); load(i + 1); load(i - 1);
-      slides.forEach(function (s, j) { s.classList.toggle('is-on', j === i); s.setAttribute('aria-hidden', j !== i); });
-      thumbs.forEach(function (t, j) { t.setAttribute('aria-pressed', j === i); });
-      var m = M.items[i];
-      k.textContent = '0' + (i + 1) + ' / 0' + n + '  ' + m.name; lineEl.textContent = m.line; nEl.textContent = (i + 1) + ' / ' + n;
-      if (!RM) {
-        note.classList.remove('is-on'); cap.classList.remove('swap');
-        void note.offsetWidth;
-        note.classList.add('is-on'); cap.classList.add('swap');
-      } else note.classList.add('is-on');
-    }
-    $('#viewPrev').addEventListener('click', function () { go(cur - 1); });
-    $('#viewNext').addEventListener('click', function () { go(cur + 1); });
-    v.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { go(cur + 1); e.preventDefault(); }
-      if (e.key === 'ArrowLeft') { go(cur - 1); e.preventDefault(); }
-    });
-    /* swipe with a finger, drag with a mouse */
-    var sx = null;
-    v.addEventListener('pointerdown', function (e) { sx = e.clientX; if (e.pointerType === 'mouse') { try { v.setPointerCapture(e.pointerId); } catch (_) {} v.classList.add('is-drag'); } });
-    function end(e) { if (sx !== null && Math.abs(e.clientX - sx) > 44) go(cur + (e.clientX < sx ? 1 : -1)); sx = null; v.classList.remove('is-drag'); }
-    v.addEventListener('pointerup', end);
-    v.addEventListener('pointercancel', function () { sx = null; v.classList.remove('is-drag'); });
-    v.addEventListener('dragstart', function (e) { e.preventDefault(); });
-    go(0);
+    var note = $('#momentNote'), sec = $('#moments'); if (!note) return;
+    if (RM || !('IntersectionObserver' in window)) { note.classList.add('is-on'); return; }
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); note.classList.add('is-on'); } }, { threshold: .45 });
+    io.observe(sec);
   })();
 
   /* ---------- deleted 44, still full ---------- */
   (function stillFull() {
     var roll = $('#roll'); if (!roll) return;
-    var status = $('#fullStatus'), bin = $('#bin'), binN = $('#binN'), all = $('#fullAll'), resetB = $('#fullReset'), bar = $('#fullDemo .bar');
+    var status = $('#fullStatus'), empty = $('#rollEmpty'), emptyT = 0, bin = $('#bin'), binN = $('#binN'), all = $('#fullAll'), resetB = $('#fullReset'), bar = $('#fullDemo .bar');
     var N = 44, del = 0, tiles = [], timers = [];
     var ORDER = [0, 2, 4, 1, 5, 3, 2, 0, 3, 5, 1, 4, 5, 1, 0, 4, 2, 3, 1, 3, 5, 0, 4, 2, 4, 0, 2, 5, 3, 1, 3, 4, 1, 2, 0, 5, 2, 5, 3, 0, 1, 4, 0, 3];
     var ZOOM = [150, 260, 190, 340, 220, 420, 170, 300];
@@ -320,7 +277,10 @@
     }
     function say() {
       var active = document.activeElement;
-      binN.textContent = del; bin.hidden = del === 0;
+      binN.textContent = del; bin.classList.toggle('is-off', del === 0); bin.setAttribute('aria-hidden', del === 0);
+      clearTimeout(emptyT);
+      if (del === N) emptyT = setTimeout(function () { roll.hidden = true; empty.hidden = false; }, RM ? 0 : 420);
+      else { roll.hidden = false; empty.hidden = true; }
       if (del === 0) status.textContent = 'Deleted 0 of 44. Storage: full.';
       else if (del < N) status.innerHTML = 'Deleted ' + del + ' of 44. <b>The bar has not moved.</b>';
       else status.innerHTML = '<b>Deleted 44. Still full.</b> Nothing comes back until Recently Deleted is emptied, and none of it was copied first.';
@@ -491,4 +451,84 @@
       sugg.appendChild(b);
     });
   })();
+
+  /* ---------- phone app chrome ---------- */
+  var PHONE = matchMedia('(max-width: 820px)');
+
+  /* tab bar: highlight the section in view */
+  (function tabs() {
+    var bar = $('#tabbar'); if (!bar) return;
+    var tabs = $$('.tab[data-tab]', bar), secs = tabs.map(function (t) { return document.getElementById(t.getAttribute('data-tab')); });
+    var ticking = false, lock = 0;
+    function set(i) { tabs.forEach(function (t, j) { if (j === i) t.setAttribute('aria-current', 'location'); else t.removeAttribute('aria-current'); }); }
+    function update() {
+      ticking = false; if (Date.now() < lock) return;
+      var y = window.scrollY + window.innerHeight * .4, cur = 0;
+      secs.forEach(function (sec, i) { if (i && sec && sec.offsetTop <= y) cur = i; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = tabs.length - 1;
+      set(cur);
+    }
+    tabs.forEach(function (t, i) { t.addEventListener('click', function () { set(i); lock = Date.now() + 900; }); });
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  })();
+
+  /* bottom sheets for Privacy and Support on phones (desktop keeps the pages) */
+  (function sheets() {
+    var sheet = $('#sheet'); if (!sheet) return;
+    var panel = $('.sheet__panel', sheet), body = $('#sheetBody'), title = $('#sheetTitle'), grab = $('#sheetGrab'), opener = null, closing = 0;
+    var NAMES = { privacy: 'Privacy', support: 'Support' };
+    function focusables() { return $$('a[href], button', panel).filter(function (e) { return e.offsetParent !== null; }); }
+    function open(kind, from) {
+      var tpl = document.getElementById('tpl-' + kind); if (!tpl) return false;
+      clearTimeout(closing); sheet.classList.remove('is-closing');
+      body.innerHTML = ''; body.appendChild(tpl.content.cloneNode(true)); body.scrollTop = 0;
+      title.textContent = NAMES[kind]; opener = from || null;
+      sheet.hidden = false; panel.style.removeProperty('--drag');
+      document.documentElement.classList.add('sheet-open');
+      panel.focus();
+      return true;
+    }
+    function close() {
+      if (sheet.hidden) return;
+      var done = function () { sheet.hidden = true; sheet.classList.remove('is-closing', 'is-dragging'); panel.style.removeProperty('--drag'); document.documentElement.classList.remove('sheet-open'); if (opener) opener.focus(); };
+      if (RM) { done(); return; }
+      sheet.classList.remove('is-dragging'); sheet.classList.add('is-closing'); closing = setTimeout(done, 250);
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href="privacy.html"], a[href="support.html"]');
+      if (a && PHONE.matches && !e.metaKey && !e.ctrlKey) {
+        var inside = panel.contains(a);
+        if (open(a.getAttribute('href').replace('.html', ''), inside ? opener : a)) e.preventDefault();
+        return;
+      }
+      if (e.target.closest && e.target.closest('[data-sheet-close]')) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (sheet.hidden) return;
+      if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+      if (e.key !== 'Tab') return;
+      var f = focusables(); if (!f.length) { e.preventDefault(); return; }
+      var first = f[0], last = f[f.length - 1], act = document.activeElement;
+      if (e.shiftKey && (act === first || act === panel)) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && act === last) { e.preventDefault(); first.focus(); }
+      else if (!panel.contains(act)) { e.preventDefault(); first.focus(); }
+    });
+    /* swipe down on the header to close */
+    var y0 = null, dy = 0, t0 = 0;
+    grab.addEventListener('pointerdown', function (e) { if (e.target.closest('button')) return; y0 = e.clientY; dy = 0; t0 = Date.now(); sheet.classList.add('is-dragging'); try { grab.setPointerCapture(e.pointerId); } catch (_) {} });
+    grab.addEventListener('pointermove', function (e) { if (y0 === null) return; dy = Math.max(0, e.clientY - y0); panel.style.setProperty('--drag', dy + 'px'); });
+    function drop() {
+      if (y0 === null) return; y0 = null;
+      var fast = dy > 40 && dy / Math.max(1, Date.now() - t0) > .6;
+      if (dy > 110 || fast) { close(); } else { sheet.classList.remove('is-dragging'); panel.style.removeProperty('--drag'); }
+    }
+    grab.addEventListener('pointerup', drop); grab.addEventListener('pointercancel', drop);
+    PHONE.addEventListener && PHONE.addEventListener('change', function (e) { if (!e.matches) close(); });
+  })();
+
+  /* offline cache: same origin only, and only when served over http(s) */
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
 })();
