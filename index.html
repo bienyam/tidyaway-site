@@ -1,54 +1,460 @@
 <!doctype html>
-<html lang="en">
+<!-- data-badge="text" shows a plain download button. Once Apple's official badge files are
+     self-hosted at assets/badges/app-store-black.svg and app-store-white.svg, set data-badge="official". -->
+<html lang="en" class="no-js" data-badge="text">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TidyAway: Free Up Storage</title>
-<meta name="apple-itunes-app" content="app-id=6836546403">
-<meta name="description" content="TidyAway frees up space on your iPhone by moving photos and videos to a drive or cloud you choose, checking every copy, and deleting only what you approve.">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TidyAway: Free Up Storage. Move it. Prove it. Free space.</title>
+<meta name="description" content="TidyAway copies your photos and videos to a place you choose, checks every copy byte for byte, and deletes only what you approve. For iPhone and iPad.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFF7EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161F" media="(prefers-color-scheme: dark)">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/png" href="assets/app-icon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="css/site.css">
+<script>document.documentElement.className = 'js';</script>
 </head>
-<body>
-<div class="wrap">
-  <header class="top">
-    <a class="brand" href="/"><img src="favicon.png" alt="">TidyAway</a>
-    <nav><a href="privacy.html">Privacy</a><a href="https://github.com/bienyam/SmartPhotoVault/issues">Support</a></nav>
-  </header>
-</div>
+<body id="top">
+
+<!-- Icon sprite. Drawn for this site; no third-party marks. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.6A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.4C19 15.6 12 20 12 20z" fill="currentColor"/></symbol>
+    <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.6-5.9M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 6v12M15.5 6v12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-drive" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="8" width="12" height="13" rx="2.5"/><path d="M9 8V3.5h6V8M11 5.5v.01M13 5.5v.01"/></g></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7.5A2 2 0 0 1 5.5 5.5h3.7l2 2.3h7.3a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7.5 18.5a4 4 0 0 1-.6-7.96 5.5 5.5 0 0 1 10.6 1.16A3.5 3.5 0 0 1 17 18.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.6"/><path d="M10.5 5.3h3"/></g></symbol>
+    <symbol id="i-pad" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="4" y="2.5" width="16" height="19" rx="2.6"/><path d="M11 18.6h2"/></g></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></g></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__row">
+    <a class="brand" href="#top" aria-label="TidyAway, home">
+      <img src="assets/app-icon-64.png" width="30" height="30" alt="">
+      <span class="brand__word">Tidy<span>Away</span></span>
+    </a>
+    <button class="nav__toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="navLinks"><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg>Menu</button>
+    <nav class="nav__links" id="navLinks" aria-label="Sections">
+      <a href="#proof">The proof</a>
+      <a href="#guardrails">Guardrails</a>
+      <a href="#ask">Questions</a>
+      <a href="#private">Privacy</a>
+    </nav>
+    <a class="btn btn--ink btn--sm" href="https://apps.apple.com/app/id6836546403" rel="noopener">Get the app</a>
+  </div>
+  <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+</header>
+
+<main id="main">
+
+<!-- 1. HERO -->
 <section class="hero">
+  <div class="wrap hero__top">
+    <div class="hero__copy">
+      <p class="eyebrow"><span class="dot"></span>Version 1.0 is on the App Store</p>
+      <h1 class="display">Move it.<br>Prove it.<br><span class="accent">Free space.</span></h1>
+    </div>
+    <div class="hero__side">
+      <p class="lead">TidyAway copies your photos and videos to a place you choose, checks every copy byte for byte, and deletes only what you approve.</p>
+      <div class="actions">
+        <a class="btn btn--ink store" href="https://apps.apple.com/app/id6836546403" rel="noopener">Get it on the App Store</a>
+        <a class="link" href="#proof">Watch a copy get checked <svg class="ico" aria-hidden="true"><use href="#i-down"/></svg></a>
+      </div>
+      <p class="for"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><svg class="ico" aria-hidden="true"><use href="#i-pad"/></svg>For iPhone and iPad</p>
+    </div>
+  </div>
+
   <div class="wrap">
-    <img src="icon-512.png" alt="TidyAway app icon">
-    <h1>Move it. Prove it. Free space.</h1>
-    <p>TidyAway frees up space on your iPhone. It copies your photos and videos to a place you choose, checks every copy, and deletes only what you approve.</p>
-    <a class="badge" href="https://apps.apple.com/app/id6836546403">Download on the App Store</a>
-    <p class="small" style="margin-top:12px">For iPhone and iPad.</p>
+    <figure class="stage" id="stage" aria-labelledby="heroLine">
+      <p class="sr">Photographs of an iPad and an iPhone held in the hand, both showing the Archive screen in TidyAway. Four videos are copied to a drive, each copy is checked, the removal is approved, and 4.6 GB of storage comes back.</p>
+      <div class="stage__grid">
+
+        <!-- iPad: the wider layout of the same screen -->
+        <div class="panel panel--pad" aria-hidden="true">
+          <div class="shot shot--pad">
+            <div class="shot__ui">
+              <div class="padapp">
+                <div class="padapp__side">
+                  <p class="app__title">Archive</p>
+                  <p class="app__sub">4 videos, 4.6 GB</p>
+                  <div class="app__store">
+                    <div class="app__row"><span>iPad storage</span><span data-h="free" class="is-low">0.2 GB free</span></div>
+                    <div class="bar" data-h="bar"><i></i></div>
+                  </div>
+                  <div class="app__to"><span>Copy to</span><b>Your drive</b></div>
+                  <div class="app__btn" data-h="btn">Copy to my drive</div>
+                  <ul class="applog">
+                    <li><span>Copied</span><b data-h="log-copy">0 of 4</b></li>
+                    <li><span>Checked, byte for byte</span><b data-h="log-check">0 of 4</b></li>
+                    <li><span>Your OK</span><b data-h="log-ok">Waiting</b></li>
+                  </ul>
+                </div>
+                <div class="padapp__main">
+                  <p class="padapp__h">Ready to archive</p>
+                  <ul class="pgrid" data-h="files" data-kind="pad"></ul>
+                </div>
+              </div>
+            </div>
+            <img class="shot__img" alt="" width="2400" height="1601" decoding="async"
+                 src="assets/devices/ipad-landscape-hands-1200.webp"
+                 srcset="assets/devices/ipad-landscape-hands-1200.webp 1200w, assets/devices/ipad-landscape-hands-2400.webp 2400w"
+                 sizes="(min-width: 1000px) 1040px, 200vw">
+          </div>
+          <span class="panel__tag">iPad</span>
+        </div>
+
+        <div class="floaters" aria-hidden="true">
+          <div class="slip" id="heroSlip">
+            <p class="slip__h">Proof <span>Fireworks.mov</span></p>
+            <p class="slip__l"><span>Original</span><code>9f3c41d7 a08e52b1</code></p>
+            <p class="slip__l"><span>Copy</span><code>9f3c41d7 a08e52b1</code></p>
+            <p class="slip__ok"><svg class="ico"><use href="#i-check"/></svg>Match, byte for byte</p>
+          </div>
+          <div class="dest" id="heroDest">
+            <p class="dest__h"><svg class="ico"><use href="#i-drive"/></svg>Your drive</p>
+            <div class="dest__slots"><i></i><i></i><i></i><i></i></div>
+            <p class="dest__n"><span id="heroDestN">0</span> of 4 copied</p>
+          </div>
+        </div>
+
+        <!-- iPhone -->
+        <div class="panel panel--phone" aria-hidden="true">
+          <div class="shot shot--phone">
+            <div class="shot__ui">
+              <div class="sb"><span>9:41</span><span class="sb__r"><b></b></span></div>
+              <div class="app">
+                <p class="app__title">Archive</p>
+                <p class="app__sub">4 videos, 4.6 GB</p>
+                <div class="app__store">
+                  <div class="app__row"><span>iPhone storage</span><span data-h="free" class="is-low">0.2 GB free</span></div>
+                  <div class="bar" data-h="bar"><i></i></div>
+                </div>
+                <ul class="files" data-h="files" data-kind="phone"></ul>
+                <div class="app__to"><span>Copy to</span><b>Your drive</b></div>
+                <div class="app__btn" data-h="btn">Copy to my drive</div>
+              </div>
+              <span class="phone__home"></span>
+              <div class="ios" id="heroDialog">
+                <div class="ios__card">
+                  <p><b>Allow &ldquo;TidyAway&rdquo; to delete 4 videos?</b><span class="ios__tag">Illustration</span></p>
+                  <div class="ios__acts"><span>Don&rsquo;t Allow</span><span class="ios__go">Delete</span></div>
+                </div>
+              </div>
+            </div>
+            <img class="shot__img" alt="" width="2400" height="1609" decoding="async"
+                 src="assets/devices/iphone-hand-1200.webp"
+                 srcset="assets/devices/iphone-hand-1200.webp 1200w, assets/devices/iphone-hand-2400.webp 2400w"
+                 sizes="1040px">
+          </div>
+          <span class="panel__tag">iPhone</span>
+        </div>
+      </div>
+
+      <figcaption class="stage__cap">
+        <ol class="steps" id="heroSteps" aria-hidden="true">
+          <li>Copy</li><li>Check</li><li>Approve</li><li>Free</li>
+        </ol>
+        <p class="stage__line" id="heroLine">Four videos, copied to a drive, checked, then removed with your say-so.</p>
+        <button class="chip" id="heroReplay" type="button"><svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg><span>Pause</span></button>
+      </figcaption>
+    </figure>
+
+    <ol class="three">
+      <li><span class="num">01</span><h2>Scan</h2><p>TidyAway looks through your photo library on the device. Scanning happens there, not on a server.</p></li>
+      <li><span class="num">02</span><h2>Copy and check</h2><p>Photos and videos go to the place you choose. Each copy is read back and compared with the original.</p></li>
+      <li><span class="num">03</span><h2>Approve</h2><p>You pick what goes. Then Apple asks you to confirm. Only then is anything deleted.</p></li>
+    </ol>
   </div>
 </section>
-<main class="wrap">
-  <section class="steps">
-    <div class="card"><span class="n">1</span><h3>See what takes space</h3><p>A scan on your iPhone finds large videos, duplicates and more, grouped so you can decide fast.</p></div>
-    <div class="card"><span class="n">2</span><h3>Copy, then check</h3><p>Copies go to a drive, a folder in Files, Google Drive, OneDrive or Dropbox, and each one is checked against its original.</p></div>
-    <div class="card"><span class="n">3</span><h3>You approve every delete</h3><p>Nothing is removed until you sign off and Apple asks you to confirm. Copies you made can be brought back any time.</p></div>
-  </section>
-  <section class="promise">
-    <h2>Built to be trusted</h2>
-    <ul>
-      <li>Favorites are never deleted</li>
-      <li>One copy of every duplicate is always kept</li>
-      <li>No account, no ads, no analytics</li>
-      <li>Your photos never go to us</li>
-      <li>Scans and suggestions happen on your iPhone</li>
-      <li>An activity log on your iPhone, without file names</li>
+
+<!-- 2. MOMENTS -->
+<section class="sec moments" id="moments" aria-labelledby="h-moments">
+  <div class="wrap">
+    <div class="sec__head sec__head--split">
+      <div>
+        <p class="kicker"><span>01</span>The moment</p>
+        <h2 class="h2" id="h-moments">Storage full, right when it matters most.</h2>
+      </div>
+      <div class="rail-ctl">
+        <span class="rail-ctl__n" id="viewN" aria-hidden="true">1 / 6</span>
+        <button class="round" type="button" id="viewPrev" aria-label="Previous moment"><svg class="ico flip" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="round" type="button" id="viewNext" aria-label="Next moment"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+
+    <div class="viewer" id="viewer" tabindex="0" role="group" aria-roledescription="carousel" aria-label="Six moments when a full phone gets in the way. Use the arrow keys to move between them.">
+      <div class="viewer__slides" id="viewSlides"></div>
+      <div class="note" id="viewNote" aria-hidden="true">
+        <span class="note__ic"><i></i></span>
+        <span><b>Storage Almost Full</b><small>No room for new photos.</small></span>
+        <em>Illustration</em>
+      </div>
+      <div class="viewer__cap" aria-live="polite">
+        <span class="viewer__k" id="viewK"></span>
+        <strong id="viewLine"></strong>
+      </div>
+    </div>
+    <div class="thumbs" id="viewThumbs" role="group" aria-label="Choose a moment"></div>
+    <noscript><p class="fine">Six photographs of moments a full phone gets in the way: fireworks, first steps, a concert, a surprise warning, a sunset and a city trip.</p></noscript>
+
+    <p class="aside">The warning never comes on a quiet afternoon. TidyAway is for the afternoon before.</p>
+  </div>
+</section>
+
+<!-- 3. DELETED 44. STILL FULL -->
+<section class="sec" id="still-full" aria-labelledby="h-full">
+  <div class="wrap split">
+    <div class="split__copy">
+      <p class="kicker"><span>02</span>The problem</p>
+      <h2 class="h2" id="h-full">Deleted <span data-count="44">44</span>. <br>Still full.</h2>
+      <p class="body">Try it. Tap photos to delete them, or delete all 44, and watch the storage bar.</p>
+      <p class="body">Deleted photos move to Recently Deleted. They stay there for up to 30 days and keep using space the whole time. And if a photo was never copied anywhere, deleting it is a gamble.</p>
+      <p class="body strong">TidyAway works the other way around. Copy first. Prove it. Then delete.</p>
+    </div>
+    <div class="split__demo">
+      <div class="card demo" id="fullDemo">
+        <div class="demo__top">
+          <div class="readout"><span>iPhone storage</span><span class="mono">63.9 of 64 GB used</span></div>
+          <div class="bar bar--lg bar--full"><i></i></div>
+        </div>
+        <div class="roll" id="roll" aria-hidden="true"></div>
+        <div class="bin" id="bin" hidden>
+          <span class="bin__name">Recently Deleted</span>
+          <span class="bin__meta"><b id="binN">0</b> photos, kept up to 30 days, still using space</span>
+        </div>
+        <div class="demo__foot">
+          <p class="status" id="fullStatus" role="status">Deleted 0 of 44. Storage: full.</p>
+          <div class="demo__btns">
+            <button class="btn btn--soft btn--sm" type="button" id="fullAll">Delete all 44</button>
+            <button class="btn btn--ghost btn--sm" type="button" id="fullReset" hidden>Start again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. THE PROOF -->
+<section class="sec sec--tint" id="proof" aria-labelledby="h-proof">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="kicker"><span>03</span>The proof</p>
+      <h2 class="h2" id="h-proof">Every copy is checked, byte for byte.</h2>
+      <p class="lead lead--sm">TidyAway does not take the copy on trust. It reads the copy back, works out its <span class="nowrap">SHA-256</span> fingerprint and compares it with the original. Run one and watch.</p>
+    </div>
+
+    <div class="card proof" id="proofDemo" data-state="idle">
+      <div class="proof__left">
+        <div class="route">
+          <div class="node"><span class="node__ic"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span><span class="node__t">iPhone<small>Original</small></span></div>
+          <div class="pipe"><i id="pipe"></i><span class="pipe__pct mono" id="pipePct">0%</span></div>
+          <div class="node"><span class="node__ic"><svg class="ico" aria-hidden="true"><use href="#i-cloud"/></svg></span><span class="node__t">OneDrive<small>Copy</small></span></div>
+        </div>
+
+        <div class="prints">
+          <div class="print">
+            <p class="print__l">Fingerprint of the original <span>IMG_2041.MOV</span></p>
+            <p class="print__v mono" id="printA" aria-hidden="true"></p>
+          </div>
+          <div class="print">
+            <p class="print__l">Fingerprint of the copy, read back</p>
+            <p class="print__v mono" id="printB" aria-hidden="true"></p>
+          </div>
+        </div>
+        <p class="status status--row" id="proofStatus" role="status">Nothing has been copied yet.</p>
+        <div class="demo__btns">
+          <button class="btn btn--accent" type="button" id="proofRun">Run a copy</button>
+          <span class="fine">A demonstration. The fingerprint is made up in your browser.</span>
+        </div>
+      </div>
+
+      <div class="proof__right">
+        <p class="proof__cap">Copying to OneDrive, the app shows four checks before anything can be removed.</p>
+        <ol class="checks" id="checks">
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>1</em></span><div><b>Copied, byte for byte</b><span>The fingerprint of each copy matches its original.</span></div></li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>2</em></span><div><b>Where they are</b><span>You are shown where the copies have been saved.</span></div></li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>3</em></span><div><b>One brought back and checked</b><span>A copy is fetched back and compared with the original.</span></div></li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>4</em></span><div><b>Your OK</b><span>You say yes. Then Apple asks you too.</span>
+            <button class="btn btn--soft btn--sm" type="button" id="proofOk" disabled>Give your OK</button></div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. GUARDRAILS -->
+<section class="sec" id="guardrails" aria-labelledby="h-guard">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="kicker"><span>04</span>Guardrails</p>
+      <h2 class="h2" id="h-guard">Some things it will not do.</h2>
+    </div>
+
+    <div class="duo">
+      <div class="card guard">
+        <h3 class="h3">Try to delete a favorite.</h3>
+        <p class="body body--sm">Two of these three are favorites. Pick any of them.</p>
+        <div class="favs" id="favs"></div>
+        <p class="status" id="favStatus" role="status">Nothing picked yet.</p>
+        <button class="btn btn--ghost btn--sm" type="button" id="favReset" hidden>Start again</button>
+      </div>
+
+      <div class="card guard guard--apple" id="appleDemo">
+        <h3 class="h3">Then Apple asks you too.</h3>
+        <p class="body body--sm">After your OK, iOS puts its own question on screen. Press the button to see it.</p>
+        <div class="apple">
+          <div class="apple__sheet">
+            <p class="apple__ok"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>10 copies checked</p>
+            <button class="btn btn--accent" type="button" id="appleOpen">Remove 10 from iPhone&hellip;</button>
+          </div>
+          <div class="ios ios--live" id="appleDialog" role="dialog" aria-modal="true" aria-labelledby="appleTitle" aria-describedby="appleDesc" hidden>
+            <div class="ios__card">
+              <p><b id="appleTitle">Allow &ldquo;TidyAway&rdquo; to delete 10 photos?</b><span id="appleDesc">Illustration of the question iOS asks.</span></p>
+              <div class="ios__acts"><button type="button" id="appleNo">Don&rsquo;t Allow</button><button type="button" id="appleYes" class="ios__go">Delete</button></div>
+            </div>
+          </div>
+        </div>
+        <p class="status" id="appleStatus" role="status">Nothing has been deleted.</p>
+      </div>
+    </div>
+
+    <ul class="rules">
+      <li><span class="rules__ic"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><b>Favorites are never deleted.</b></li>
+      <li><span class="rules__ic"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><b>One copy of every duplicate is always kept.</b></li>
+      <li><span class="rules__ic"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><b>Anything copied can be brought back.</b></li>
     </ul>
-  </section>
+  </div>
+</section>
+
+<!-- 6. WHERE COPIES GO -->
+<section class="sec sec--rule" id="places" aria-labelledby="h-places">
+  <div class="wrap split split--even">
+    <div class="split__copy">
+      <p class="kicker"><span>05</span>Your choice</p>
+      <h2 class="h2" id="h-places">Your copies go where you say.</h2>
+      <p class="body">A drive in your hand, a folder you already use, or your own cloud account. Choose one to see the route.</p>
+    </div>
+    <div class="split__demo">
+      <fieldset class="places" id="placesSet">
+        <legend class="sr">Where should copies go?</legend>
+        <label class="place"><input type="radio" name="place" value="drive" checked><span class="place__ic"><svg class="ico" aria-hidden="true"><use href="#i-drive"/></svg></span><span class="place__t">A drive</span><span class="place__d">Plugged into your iPhone or iPad</span></label>
+        <label class="place"><input type="radio" name="place" value="files"><span class="place__ic"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg></span><span class="place__t">Files</span><span class="place__d">iCloud Drive or a home server</span></label>
+        <label class="place"><input type="radio" name="place" value="google"><span class="place__ic place__ic--mono" aria-hidden="true">G</span><span class="place__t">Google Drive</span><span class="place__d">Your own account</span></label>
+        <label class="place"><input type="radio" name="place" value="onedrive"><span class="place__ic place__ic--mono" aria-hidden="true">O</span><span class="place__t">OneDrive</span><span class="place__d">Your own account</span></label>
+        <label class="place"><input type="radio" name="place" value="dropbox"><span class="place__ic place__ic--mono" aria-hidden="true">D</span><span class="place__t">Dropbox</span><span class="place__d">Your own account</span></label>
+      </fieldset>
+      <p class="routeline" id="placeLine" role="status"><span class="mono">iPhone or iPad</span><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg><span class="mono" id="placeTo">A drive plugged into it</span><span class="routeline__ok"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>read back and checked</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. COMMON QUESTIONS -->
+<section class="sec sec--tint" id="ask" aria-labelledby="h-ask">
+  <div class="wrap ask">
+    <div class="sec__head sec__head--center">
+      <p class="kicker"><span>06</span>Ask TidyAway</p>
+      <h2 class="h2" id="h-ask">Common questions</h2>
+    </div>
+    <div class="card askbox">
+      <div class="thread" id="thread" aria-live="polite">
+        <p class="msg msg--a">Pick a question, or type your own. The answers are written by us, so if there is no written answer you will be told so.</p>
+      </div>
+      <div class="sugg" id="sugg" role="group" aria-label="Suggested questions"></div>
+      <form class="askform" id="askForm" autocomplete="off">
+        <label class="sr" for="askQ">Your question</label>
+        <input id="askQ" name="q" type="text" placeholder="Will it delete my favorites?" maxlength="140" enterkeyhint="send">
+        <button class="btn btn--ink btn--sm" type="submit">Ask</button>
+      </form>
+      <p class="askpriv"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg>Nothing you type is sent anywhere. The answers are written by us and built into this page.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. PRIVATE BY DESIGN -->
+<section class="band" id="private" aria-labelledby="h-private">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="kicker"><span>07</span>Private by design</p>
+      <h2 class="h2" id="h-private">Your photos never come to us.</h2>
+    </div>
+    <ul class="quad">
+      <li><b>No account</b><span>There is nothing to sign up for.</span></li>
+      <li><b>No ads</b><span>Not in the app, not on this site.</span></li>
+      <li><b>No analytics</b><span>The app does not watch what you do.</span></li>
+      <li><b>On your iPhone or iPad</b><span>Scanning happens on the device.</span></li>
+    </ul>
+    <p class="band__note">This page keeps the same rule. It loads no trackers, no outside fonts and no outside scripts. <a href="privacy.html">Read the privacy policy</a></p>
+  </div>
+</section>
+
+<!-- 9. COMING SOON -->
+<section class="sec" id="soon" aria-labelledby="h-soon">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="kicker"><span>08</span>What is next</p>
+      <h2 class="h2" id="h-soon">Coming soon.</h2>
+      <p class="lead lead--sm">These are not in version 1.0 yet. We would rather say so.</p>
+    </div>
+    <ul class="soon">
+      <li><span class="tag">Coming soon</span><h3 class="h3">Live Photos and edited photos</h3><p>Archiving for Live Photos and for photos you have edited.</p></li>
+      <li><span class="tag">Coming soon</span><h3 class="h3">Check-ins</h3><p>Storage reminders on a schedule, and reminders before events in your calendar.</p></li>
+      <li><span class="tag">Coming soon</span><h3 class="h3">Smart Pro</h3><p>The best shot, with the reason it was chosen. Screenshots read on the device.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10. FINAL CALL TO ACTION -->
+<section class="final" aria-labelledby="h-final">
+  <div class="wrap">
+    <div class="poster" id="poster">
+      <div class="poster__img" id="posterImg" aria-hidden="true"></div>
+      <div class="poster__in">
+        <img class="final__icon" src="assets/app-icon-256.png" width="76" height="76" alt="TidyAway app icon">
+        <h2 class="display display--final" id="h-final">Move it.<br>Prove it.<br><span class="accent">Free space.</span></h2>
+        <div class="actions">
+          <a class="btn btn--ink store" href="https://apps.apple.com/app/id6836546403" rel="noopener">Get it on the App Store</a>
+        </div>
+        <p class="for"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><svg class="ico" aria-hidden="true"><use href="#i-pad"/></svg>For iPhone and iPad</p>
+        <p class="fine">Free to download. TidyAway Pro is an in-app purchase.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
-<div class="wrap">
-  <footer>
-    <a href="privacy.html">Privacy policy</a><a href="https://github.com/bienyam/SmartPhotoVault/issues">Support</a>
-    <div style="margin-top:10px">© 2026 TidyAway</div>
-  </footer>
-</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__row">
+      <a class="brand" href="#top" aria-label="TidyAway, back to top">
+        <img src="assets/app-icon-64.png" width="24" height="24" alt="">
+        <span class="brand__word">Tidy<span>Away</span></span>
+      </a>
+      <nav class="foot__links" aria-label="Footer">
+        <a href="privacy.html">Privacy</a>
+        <a href="support.html">Support</a>
+        <a href="https://apps.apple.com/app/id6836546403" rel="noopener">App Store</a>
+      </nav>
+      <p class="foot__copy">&copy; 2026 TidyAway</p>
+    </div>
+    <p class="foot__legal">Apple, iPhone, iPad and App Store are trademarks of Apple Inc. Google Drive, OneDrive and Dropbox are trademarks of their respective owners.</p>
+  </div>
+</footer>
+
+<script src="js/moments.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>
