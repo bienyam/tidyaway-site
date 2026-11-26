@@ -1,7 +1,7 @@
 /* TidyAway offline cache. Same origin only: requests to any other origin are never touched.
    Pages, CSS and JS are fetched fresh when online and fall back to the cache offline;
    images are served from the cache once seen. Bump VERSION on each deploy. */
-var VERSION = 'tidyaway-v4';
+var VERSION = 'tidyaway-v5';
 var CORE = ['./', 'index.html', 'privacy.html', 'support.html', 'css/site.css', 'js/moments.js', 'js/site.js',
   'manifest.webmanifest', 'assets/app-icon-64.png', 'assets/app-icon-256.png', 'assets/apple-touch-icon.png',
   'assets/badges/app-store-black.svg', 'assets/devices/iphone-hand-1200.webp', 'assets/devices/ipad-landscape-hands-1200.webp'];
