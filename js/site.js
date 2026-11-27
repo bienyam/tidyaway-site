@@ -331,14 +331,14 @@
       else pipe.style.transform = 'scaleX(1)';
       countTo(pct, 0, 100, 1900, function (v) { return Math.round(v) + '%'; });
       if (m) [0, 380, 760].forEach(function (d) { at(d, function () { fly(nodes[0], nodes[1], m, function () { nodes[1].classList.remove('is-hit'); void nodes[1].offsetWidth; nodes[1].classList.add('is-hit'); }); }); });
-      at(2000, function () { status.textContent = 'Reading the copy back from OneDrive.'; });
+      at(2000, function () { status.textContent = 'Reading the copy\'s fingerprint from OneDrive.'; });
       H.forEach(function (g, i) {
         at(2300 + i * 170, function () {
           var bs = $$('span', B), as = $$('span', A);
           bs[i].textContent = g; bs[i].className = 'is-ok is-pop'; as[i].className = 'is-ok is-pop';
         });
       });
-      at(3800, function () { status.innerHTML = '<span class="good">The fingerprints match.</span> The copy matches the original, byte for byte.'; checks[0].classList.add('is-on'); });
+      at(3800, function () { status.innerHTML = '<span class="good">The fingerprints match.</span> The copy matches the original.'; checks[0].classList.add('is-on'); });
       at(4500, function () { checks[1].classList.add('is-on'); });
       at(5200, function () { checks[2].classList.add('is-on'); });
       at(5700, function () { checks[3].classList.add('is-wait'); ok.disabled = false; status.textContent = 'Three checks passed. The fourth one is yours.'; run.disabled = false; run.textContent = 'Run it again'; });
@@ -419,19 +419,19 @@
       [/recently deleted|still full|not free|didn.?t free|no space|\b44\b/i, 'Deleted photos move to Recently Deleted. They stay there for up to 30 days and keep using space, which is why a phone can still be full after you delete things.'],
       [/favou?rite|heart/i, 'Favorites are never deleted. TidyAway leaves them where they are.'],
       [/duplicate|same photo|copies of the same/i, 'One copy of every duplicate is always kept.'],
-      [/live photo|edited|\bedits\b/i, 'Archiving for Live Photos and edited photos is coming soon. It is not in version 1.0.'],
-      [/check.?in|remind|calendar|schedule/i, 'Check-ins are coming soon: storage reminders on a schedule, and reminders before events in your calendar. They are not in version 1.0.'],
-      [/smart pro|best shot|screenshot/i, 'Smart Pro is coming soon: the best shot with the reason it was chosen, and screenshots read on the device. It is not in version 1.0.'],
+      [/live photo|edited|\bedits\b/i, 'Live Photos and edited photos can be archived: TidyAway copies all of their parts.'],
+      [/check.?in|remind|calendar|schedule/i, 'Check-ins are in the app: storage reminders on a schedule, and reminders before events in your calendar. A monthly check-in is free; more often is part of TidyAway Pro.'],
+      [/smart pro|best shot|screenshot/i, 'Smart Pro is part of TidyAway Pro: the best shot with the reason it was chosen, and screenshots sorted on the device.'],
       [/\bipad\b/i, 'Yes, TidyAway runs on iPhone and iPad.'],
       [/price|cost|is it free|for free|free to|\bpay|\bpro\b|subscription|purchase|how much/i, 'TidyAway is free to download. TidyAway Pro is an in-app purchase. The App Store shows the current prices.'],
-      [/\bsha(-?256)?\b|hash|fingerprint|verif|\bbyte|prove|proof|how.*(check|know)|checked/i, 'Every copy is read back and its SHA-256 fingerprint is compared with the original, byte for byte. Copying to OneDrive, the app shows four checks: Copied, byte for byte. Where they are. One brought back and checked. Your OK.'],
+      [/\bsha(-?256)?\b|hash|fingerprint|verif|\bbyte|prove|proof|how.*(check|know)|checked/i, 'Each copy is checked against its original: the size must match, and on Google Drive, OneDrive and Dropbox the service\'s own checksum must match too. Before TidyAway offers to remove an original, one copy is brought back and checked byte for byte.'],
       [/bring.*back|get.*back|restore|undo|recover/i, 'Anything TidyAway copied can be brought back.'],
       [/privacy|private|track|analytics|\bads?\b|account|sign.?up|log.?in|see my|your server|developer|upload to you/i, 'No account, no ads and no analytics. Your photos never go to the developer, and scanning happens on the device.'],
       [/where|google|onedrive|dropbox|icloud drive|\bcloud\b|\bdrive\b|usb|ssd|\bfiles\b|server|\bnas\b|destination/i, 'You choose where copies go: a drive plugged into your iPhone or iPad, a folder in Files (iCloud Drive or a home server), Google Drive, OneDrive or Dropbox.'],
-      [/delete|remove|lose|\bsafe\b|trust|approve|confirm|apple/i, 'TidyAway deletes only what you approve, and then Apple asks you to confirm too. Every copy is checked byte for byte before that.'],
-      [/iphone|android|\bmac\b|windows|which phone|which device/i, 'TidyAway is an app for iPhone and iPad. Version 1.0 is on the App Store.'],
-      [/what (does|is) (it|tidyaway|this)|how does (it|tidyaway|this)/i, 'TidyAway scans your photo library on the device, copies photos and videos to a place you choose, checks every copy byte for byte, and deletes only what you approve.'],
-      [/download|install|get it|app store|version/i, 'Version 1.0 is on the App Store. The Download button on this page takes you there.'],
+      [/delete|remove|lose|\bsafe\b|trust|approve|confirm|apple/i, 'TidyAway deletes only what you approve, and then Apple asks you to confirm too. Before it offers to remove an original after archiving, it checks the copy first.'],
+      [/iphone|android|\bmac\b|windows|which phone|which device/i, 'TidyAway is an app for iPhone and iPad, on the App Store.'],
+      [/what (does|is) (it|tidyaway|this)|how does (it|tidyaway|this)/i, 'TidyAway scans your photo library on the device, copies photos and videos to a place you choose, checks every copy against the original, and deletes only what you approve.'],
+      [/download|install|get it|app store|version/i, 'TidyAway is on the App Store. The Download button on this page takes you there.'],
       [/sent anywhere|typed|this box|who wrote|are you a/i, 'These answers are written by us and built into this page. Nothing you type is sent anywhere.']
     ];
     var NONE = 'There is no written answer for that, and we would rather not guess. Try asking about deleting, favorites, where copies go, or privacy.';
