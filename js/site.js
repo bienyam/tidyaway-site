@@ -421,7 +421,7 @@
       [/duplicate|same photo|copies of the same/i, 'One copy of every duplicate is always kept.'],
       [/live photo|edited|\bedits\b/i, 'Live Photos and edited photos can be archived: TidyAway copies all of their parts.'],
       [/check.?in|remind|calendar|schedule/i, 'Check-ins are in the app: storage reminders on a schedule, and reminders before events in your calendar. A monthly check-in is free; more often is part of TidyAway Pro.'],
-      [/smart pro|best shot|screenshot/i, 'Smart Pro is part of TidyAway Pro: the best shot with the reason it was chosen, and screenshots sorted on the device.'],
+      [/smart pro|best shot|screenshot/i, 'Smart Pro is part of TidyAway Pro: the best shot with the reason it was chosen, and screenshots read on the device.'],
       [/\bipad\b/i, 'Yes, TidyAway runs on iPhone and iPad.'],
       [/price|cost|is it free|for free|free to|\bpay|\bpro\b|subscription|purchase|how much/i, 'TidyAway is free to download. TidyAway Pro is an in-app purchase. The App Store shows the current prices.'],
       [/\bsha(-?256)?\b|hash|fingerprint|verif|\bbyte|prove|proof|how.*(check|know)|checked/i, 'Each copy is checked against its original: the size must match, and on Google Drive, OneDrive and Dropbox the service\'s own checksum must match too. Before TidyAway offers to remove an original, one copy is brought back and checked byte for byte.'],
