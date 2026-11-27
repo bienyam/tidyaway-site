@@ -62,12 +62,20 @@
 <dd>Deleted photos move to Recently Deleted. They stay there for up to 30 days and keep using space, which is why a phone can still be full after you delete things.</dd>
 <dt>Will it delete my favorites?</dt>
 <dd>Favorites are never deleted. TidyAway leaves them where they are.</dd>
+<dt>How does Free up work?</dt>
+<dd>Free up finds the biggest things on your iPhone or iPad. You pick what goes, sign off, and Apple asks you to confirm. Deleted items wait in Recently Deleted for 30 days; empty it in Photos to get the space back.</dd>
+<dt>How does Archive work?</dt>
+<dd>Archive copies photos and files from your iPhone or iPad and iCloud to a place you choose and checks every copy. It only adds copies there; it never deletes or changes anything in your archive.</dd>
+<dt>What is the Storage Score?</dt>
+<dd>One number from free space alone: free space &divide; total space &times; 4, capped at 100. It is not a measure of speed, battery or the health of your device.</dd>
+<dt>Can TidyAway clear apps or System Data?</dt>
+<dd>No app can. The Storage Checkup in the app shows the steps to do it yourself in Settings, then measures your free space again.</dd>
 <dt>What about duplicates?</dt>
 <dd>One copy of every duplicate is always kept.</dd>
 <dt>How is a copy checked?</dt>
-<dd>Every copy is read back and its SHA-256 fingerprint is compared with the original, byte for byte. Copying to OneDrive, the app shows four checks: Copied, byte for byte. Where they are. One brought back and checked. Your OK.</dd>
+<dd>Each copy is checked against its original: the size must match, and on Google Drive, OneDrive and Dropbox the service's own checksum must match too. Before TidyAway offers to remove an original, one copy is brought back and checked byte for byte.</dd>
 <dt>What gets deleted?</dt>
-<dd>TidyAway deletes only what you approve, and then Apple asks you to confirm too. Every copy is checked byte for byte before that.</dd>
+<dd>TidyAway deletes only what you approve, and then Apple asks you to confirm too. Before it offers to remove an original after archiving, it checks the copy first.</dd>
 <dt>Can I get a copy back?</dt>
 <dd>Anything TidyAway copied can be brought back.</dd>
 <dt>Where do copies go?</dt>
@@ -78,14 +86,15 @@
 <dd>Yes, TidyAway runs on iPhone and iPad.</dd>
 <dt>What does it cost?</dt>
 <dd>TidyAway is free to download. TidyAway Pro is an in-app purchase. The App Store shows the current prices.</dd>
-<dt>What is coming soon?</dt>
-<dd>Archiving for Live Photos and edited photos, Check-ins (storage reminders on a schedule, and reminders before events in your calendar) and Smart Pro (the best shot with the reason it was chosen, and screenshots read on the device). None of these are in version 1.0.</dd>
+<dt>What's new since version 1.0?</dt>
+<dd>Archiving for Live Photos and edited photos, Check-ins (storage reminders on a schedule, and reminders before events in your calendar) and Smart Pro (the best shot with the reason it was chosen, and screenshots read on the device) are all in the app now. Smart Pro and check-ins more often than monthly are part of TidyAway Pro.</dd>
 </dl>
 <h2>Report a problem or ask a question</h2>
 <div class="card">
-<p>Problems and questions go to the TidyAway issues page on GitHub.</p>
-<p>Issues are public, so leave out personal photos and library information.</p>
-<a class="btn btn--ink" href="https://github.com/bienyam/SmartPhotoVault/issues" rel="noopener">Report a problem or ask a question</a>
+<p>Email us at <a href="mailto:hello@tidyaway.app">hello@tidyaway.app</a>. Tell us what happened and what you expected, with your TidyAway version, device and iOS version (More &rsaquo; Help &rsaquo; Contact us in the app has them ready to copy). Please leave out photos and file names you want to keep private.</p>
+<a class="btn btn--ink" href="mailto:hello@tidyaway.app?subject=TidyAway%20support">Email hello@tidyaway.app</a>
+<p style="margin-top:22px">You can also report a problem or ask a question on the TidyAway issues page on GitHub. Issues are public, so leave out personal photos and library information.</p>
+<a class="btn btn--ghost" href="https://github.com/bienyam/SmartPhotoVault/issues" rel="noopener">Open the issues page on GitHub</a>
 </div>
 <h2>Privacy</h2>
 <p>The <a href="privacy.html">privacy policy</a> says what the app reads, keeps and deletes.</p>

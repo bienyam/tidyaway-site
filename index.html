@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TidyAway: Free Up Storage. Move it. Prove it. Free space.</title>
-<meta name="description" content="TidyAway copies your photos and videos to a place you choose, checks every copy byte for byte, and deletes only what you approve. For iPhone and iPad.">
+<meta name="description" content="TidyAway copies your photos and videos to a place you choose, checks every copy against the original, and deletes only what you approve. For iPhone and iPad.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FFF7EE" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14161F" media="(prefers-color-scheme: dark)">
@@ -76,11 +76,11 @@
 <section class="hero">
   <div class="wrap hero__top">
     <div class="hero__copy">
-      <p class="eyebrow"><span class="dot"></span>Version 1.0 is on the App Store</p>
+      <p class="eyebrow"><span class="dot"></span>On the App Store</p>
       <h1 class="display">Move it.<br>Prove it.<br><span class="accent">Free space.</span></h1>
     </div>
     <div class="hero__side">
-      <p class="lead">TidyAway copies your photos and videos to a place you choose, checks every copy byte for byte, and deletes only what you approve.</p>
+      <p class="lead">TidyAway copies your photos and videos to a place you choose, checks every copy against the original, and deletes only what you approve.</p>
       <div class="actions">
         <a class="btn btn--ink store" href="https://apps.apple.com/app/id6836546403" rel="noopener">Get it on the App Store</a>
         <a class="link" href="#proof">Watch a copy get checked <svg class="ico" aria-hidden="true"><use href="#i-down"/></svg></a>
@@ -110,7 +110,7 @@
                   <div class="app__btn" data-h="btn">Copy to my drive</div>
                   <ul class="applog">
                     <li><span>Copied</span><b data-h="log-copy">0 of 4</b></li>
-                    <li><span>Checked, byte for byte</span><b data-h="log-check">0 of 4</b></li>
+                    <li><span>Checked</span><b data-h="log-check">0 of 4</b></li>
                     <li><span>Your OK</span><b data-h="log-ok">Waiting</b></li>
                   </ul>
                 </div>
@@ -133,7 +133,7 @@
             <p class="slip__h">Proof <span>Fireworks.mov</span></p>
             <p class="slip__l"><span>Original</span><code>9f3c41d7 a08e52b1</code></p>
             <p class="slip__l"><span>Copy</span><code>9f3c41d7 a08e52b1</code></p>
-            <p class="slip__ok"><svg class="ico"><use href="#i-check"/></svg>Match, byte for byte</p>
+            <p class="slip__ok"><svg class="ico"><use href="#i-check"/></svg>Match</p>
           </div>
           <div class="dest" id="heroDest">
             <p class="dest__h"><svg class="ico"><use href="#i-drive"/></svg>Your drive</p>
@@ -259,8 +259,8 @@
   <div class="wrap">
     <div class="sec__head">
       <p class="kicker"><span>03</span>The proof</p>
-      <h2 class="h2" id="h-proof">Every copy is checked, byte for byte.</h2>
-      <p class="lead lead--sm">TidyAway does not take the copy on trust. It reads the copy back, works out its <span class="nowrap">SHA-256</span> fingerprint and compares it with the original. Run one and watch.</p>
+      <h2 class="h2" id="h-proof">Every copy is checked.</h2>
+      <p class="lead lead--sm">TidyAway does not take the copy on trust. Each copy must match its original's size, and on Google Drive, OneDrive and Dropbox the service's own checksum too. Before an original can be removed, one copy is brought back and checked byte for byte. Run one and watch.</p>
     </div>
 
     <div class="card proof" id="proofDemo" data-state="idle">
@@ -277,7 +277,7 @@
             <p class="print__v mono" id="printA" aria-hidden="true"></p>
           </div>
           <div class="print">
-            <p class="print__l">Fingerprint of the copy, read back</p>
+            <p class="print__l">Fingerprint OneDrive reports for the copy</p>
             <p class="print__v mono" id="printB" aria-hidden="true"></p>
           </div>
         </div>
@@ -291,9 +291,9 @@
       <div class="proof__right">
         <p class="proof__cap">Copying to OneDrive, the app shows four checks before anything can be removed.</p>
         <ol class="checks" id="checks">
-          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>1</em></span><div><b>Copied, byte for byte</b><span>The fingerprint of each copy matches its original.</span></div></li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>1</em></span><div><b>Copied and checked</b><span>Each copy matches its original's size and OneDrive's own checksum.</span></div></li>
           <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>2</em></span><div><b>Where they are</b><span>You are shown where the copies have been saved.</span></div></li>
-          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>3</em></span><div><b>One brought back and checked</b><span>A copy is fetched back and compared with the original.</span></div></li>
+          <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>3</em></span><div><b>One brought back and checked</b><span>A copy is fetched back and compared with the original, byte for byte.</span></div></li>
           <li><span class="tick"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><em>4</em></span><div><b>Your OK</b><span>You say yes. Then Apple asks you too.</span>
             <button class="btn btn--soft btn--sm" type="button" id="proofOk" disabled>Give your OK</button></div></li>
         </ol>
@@ -407,18 +407,18 @@
   </div>
 </section>
 
-<!-- 9. COMING SOON -->
+<!-- 9. NEW SINCE 1.0 -->
 <section class="sec" id="soon" aria-labelledby="h-soon">
   <div class="wrap">
     <div class="sec__head">
-      <p class="kicker"><span>08</span>What is next</p>
-      <h2 class="h2" id="h-soon">Coming soon.</h2>
-      <p class="lead lead--sm">These are not in version 1.0 yet. We would rather say so.</p>
+      <p class="kicker"><span>08</span>What is new</p>
+      <h2 class="h2" id="h-soon">New since version 1.0.</h2>
+      <p class="lead lead--sm">Promised on this page at launch, and now in the app.</p>
     </div>
     <ul class="soon">
-      <li><span class="tag">Coming soon</span><h3 class="h3">Live Photos and edited photos</h3><p>Archiving for Live Photos and for photos you have edited.</p></li>
-      <li><span class="tag">Coming soon</span><h3 class="h3">Check-ins</h3><p>Storage reminders on a schedule, and reminders before events in your calendar.</p></li>
-      <li><span class="tag">Coming soon</span><h3 class="h3">Smart Pro</h3><p>The best shot, with the reason it was chosen. Screenshots read on the device.</p></li>
+      <li><span class="tag">New</span><h3 class="h3">Live Photos and edited photos</h3><p>Archiving for Live Photos and for photos you have edited.</p></li>
+      <li><span class="tag">New</span><h3 class="h3">Check-ins</h3><p>Storage reminders on a schedule, and reminders before events in your calendar.</p></li>
+      <li><span class="tag">New</span><h3 class="h3">Smart Pro</h3><p>The best shot, with the reason it was chosen. Screenshots read on the device. Part of TidyAway Pro.</p></li>
     </ul>
   </div>
 </section>
@@ -519,8 +519,8 @@
 <h2>Purchases</h2>
 <p>TidyAway Pro is sold through Apple. Apple handles payment; the app only learns whether Pro is active.</p>
 <h2>Questions</h2>
-<p>For privacy questions, use the <a href="https://github.com/bienyam/SmartPhotoVault/issues">TidyAway support page</a>. Issues are public, so leave out personal photos and library information.</p>
-<p>Last updated: November 26, 2026.</p>
+<p>For privacy questions, email <a href="mailto:hello@tidyaway.app">hello@tidyaway.app</a> or use the <a href="support.html">TidyAway support page</a>. If you report a problem on the public issue list linked from that page, leave out personal photos and library information.</p>
+<p>Last updated: November 27, 2026.</p>
 </template>
 <template id="tpl-support">
 <h1>Support</h1>
@@ -530,12 +530,20 @@
 <dd>Deleted photos move to Recently Deleted. They stay there for up to 30 days and keep using space, which is why a phone can still be full after you delete things.</dd>
 <dt>Will it delete my favorites?</dt>
 <dd>Favorites are never deleted. TidyAway leaves them where they are.</dd>
+<dt>How does Free up work?</dt>
+<dd>Free up finds the biggest things on your iPhone or iPad. You pick what goes, sign off, and Apple asks you to confirm. Deleted items wait in Recently Deleted for 30 days; empty it in Photos to get the space back.</dd>
+<dt>How does Archive work?</dt>
+<dd>Archive copies photos and files from your iPhone or iPad and iCloud to a place you choose and checks every copy. It only adds copies there; it never deletes or changes anything in your archive.</dd>
+<dt>What is the Storage Score?</dt>
+<dd>One number from free space alone: free space &divide; total space &times; 4, capped at 100. It is not a measure of speed, battery or the health of your device.</dd>
+<dt>Can TidyAway clear apps or System Data?</dt>
+<dd>No app can. The Storage Checkup in the app shows the steps to do it yourself in Settings, then measures your free space again.</dd>
 <dt>What about duplicates?</dt>
 <dd>One copy of every duplicate is always kept.</dd>
 <dt>How is a copy checked?</dt>
-<dd>Every copy is read back and its SHA-256 fingerprint is compared with the original, byte for byte. Copying to OneDrive, the app shows four checks: Copied, byte for byte. Where they are. One brought back and checked. Your OK.</dd>
+<dd>Each copy is checked against its original: the size must match, and on Google Drive, OneDrive and Dropbox the service's own checksum must match too. Before TidyAway offers to remove an original, one copy is brought back and checked byte for byte.</dd>
 <dt>What gets deleted?</dt>
-<dd>TidyAway deletes only what you approve, and then Apple asks you to confirm too. Every copy is checked byte for byte before that.</dd>
+<dd>TidyAway deletes only what you approve, and then Apple asks you to confirm too. Before it offers to remove an original after archiving, it checks the copy first.</dd>
 <dt>Can I get a copy back?</dt>
 <dd>Anything TidyAway copied can be brought back.</dd>
 <dt>Where do copies go?</dt>
@@ -546,14 +554,15 @@
 <dd>Yes, TidyAway runs on iPhone and iPad.</dd>
 <dt>What does it cost?</dt>
 <dd>TidyAway is free to download. TidyAway Pro is an in-app purchase. The App Store shows the current prices.</dd>
-<dt>What is coming soon?</dt>
-<dd>Archiving for Live Photos and edited photos, Check-ins (storage reminders on a schedule, and reminders before events in your calendar) and Smart Pro (the best shot with the reason it was chosen, and screenshots read on the device). None of these are in version 1.0.</dd>
+<dt>What's new since version 1.0?</dt>
+<dd>Archiving for Live Photos and edited photos, Check-ins (storage reminders on a schedule, and reminders before events in your calendar) and Smart Pro (the best shot with the reason it was chosen, and screenshots read on the device) are all in the app now. Smart Pro and check-ins more often than monthly are part of TidyAway Pro.</dd>
 </dl>
 <h2>Report a problem or ask a question</h2>
 <div class="card">
-<p>Problems and questions go to the TidyAway issues page on GitHub.</p>
-<p>Issues are public, so leave out personal photos and library information.</p>
-<a class="btn btn--ink" href="https://github.com/bienyam/SmartPhotoVault/issues" rel="noopener">Report a problem or ask a question</a>
+<p>Email us at <a href="mailto:hello@tidyaway.app">hello@tidyaway.app</a>. Tell us what happened and what you expected, with your TidyAway version, device and iOS version (More &rsaquo; Help &rsaquo; Contact us in the app has them ready to copy). Please leave out photos and file names you want to keep private.</p>
+<a class="btn btn--ink" href="mailto:hello@tidyaway.app?subject=TidyAway%20support">Email hello@tidyaway.app</a>
+<p style="margin-top:22px">You can also report a problem or ask a question on the TidyAway issues page on GitHub. Issues are public, so leave out personal photos and library information.</p>
+<a class="btn btn--ghost" href="https://github.com/bienyam/SmartPhotoVault/issues" rel="noopener">Open the issues page on GitHub</a>
 </div>
 <h2>Privacy</h2>
 <p>The <a href="privacy.html">privacy policy</a> says what the app reads, keeps and deletes.</p>
